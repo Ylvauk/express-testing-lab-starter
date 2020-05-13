@@ -1,13 +1,12 @@
 const express = require("express");
 const hbs = require("express-handlebars");
 const cors = require("cors");
-const parser = require("body-parser");
 
 const gifs = require("./controllers/gifs");
 
 const app = express();
-app.use(parser.urlencoded({ extended: true }));
-app.use(parser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "hbs");
