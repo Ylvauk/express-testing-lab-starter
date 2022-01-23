@@ -1,10 +1,12 @@
-const Gif = require("./schema");
-const seedData = require("./seeds.json");
+const Gif = require('./schema');
+const seedData = require('./seeds.json');
 
-Gif.remove({})
-  .then(() => {
-    return Gif.collection.insert(seedData);
-  })
-  .then(() => {
-    process.exit();
-  });
+Gif.deleteMany({})
+	.then(() => {
+		return Gif.insertMany(seedData);
+	})
+	.then((gifs) => {
+		console.log('Inserted gifs!', gifs);
+	})
+	.catch(console.error)
+	.finally(() => process.exit());
